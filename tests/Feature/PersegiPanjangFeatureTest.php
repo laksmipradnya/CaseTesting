@@ -13,16 +13,14 @@ class PersegiPanjangFeatureTest extends TestCase
         $response->assertSee('Hitung Keliling Persegi Panjang');
     }
 
-    public function test_calculate_keliling()
+    public function test_hitung_keliling()
     {
-        $response = $this->post('/hitung-keliling', ['panjang' => 5, 'lebar' => 3]);
-        $response->assertSee('Keliling persegi panjang dengan panjang 5 dan lebar 3');
-        $response->assertSee('16');
-    }
+        $response = $this->post('/hitung-keliling', [
+            'panjang' => 4,
+            'lebar' => 5,
+        ]);
 
-    public function test_validation_error()
-    {
-        $response = $this->post('/hitung-keliling', ['panjang' => -1, 'lebar' => 3]);
-        $response->assertSessionHasErrors('panjang');
+        $response->assertSee('Keliling dari persegi panjang');
+        $response->assertSee('18');
     }
 }

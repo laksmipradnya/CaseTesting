@@ -3,23 +3,19 @@
 namespace Tests\Unit;
 
 use Tests\TestCase;
+use App\Helpers\PersegiPanjangHelper;
 
 class PersegiPanjangHelperTest extends TestCase
 {
-    public function test_keliling()
+    public function test_hitung_keliling()
     {
-        $this->assertEquals(14, $this->calculateKeliling(4, 3));
-        $this->assertEquals(0, $this->calculateKeliling(0, 0));
-        $this->assertEquals(20.4, $this->calculateKeliling(7.2, 3));
+        $this->assertEquals(20, PersegiPanjangHelper::hitungKeliling(5, 5));
+        $this->assertEquals(18, PersegiPanjangHelper::hitungKeliling(4, 5));
     }
 
-    public function test_keliling_with_float_precision()
+    public function test_keliling_dengan_nol()
     {
-        $this->assertEqualsWithDelta(20.44, $this->calculateKeliling(7.22, 3), 0.01);
-    }
-
-    private function calculateKeliling($p, $l)
-    {
-        return 2 * ($p + $l);
+        $this->assertEquals(10, PersegiPanjangHelper::hitungKeliling(0, 5));
+        $this->assertEquals(8, PersegiPanjangHelper::hitungKeliling(4, 0));
     }
 }

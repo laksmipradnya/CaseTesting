@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Helpers\PersegiPanjangHelper;
 
 class PersegiPanjangController extends Controller
 {
@@ -20,13 +21,8 @@ class PersegiPanjangController extends Controller
 
         $panjang = $request->input('panjang');
         $lebar = $request->input('lebar');
-        $keliling = $this->calculateKeliling($panjang, $lebar);
+        $keliling = PersegiPanjangHelper::hitungKeliling($panjang, $lebar);
 
         return view('persegipanjang', compact('panjang', 'lebar', 'keliling'));
-    }
-
-    private function calculateKeliling($panjang, $lebar)
-    {
-        return 2 * ($panjang + $lebar);
     }
 }

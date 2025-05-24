@@ -2,36 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\CalculatorHelper;
+use App\Helpers\HitungHelper;
 use Illuminate\Http\Request;
 
-class CalculatorController extends Controller
+class PersegiPanjangController extends Controller
 {
     public function index()
     {
-        return view('calculator');
+        return view('keliling');
     }
 
-    public function calculate(Request $request)
+    public function hitung(Request $request)
     {
-        // Validation Request
         $request->validate([
-            'a' => 'required|numeric',
-            'b' => 'required|numeric',
-            'operation' => 'required|in:add,subtract',
+            'panjang' => 'required|numeric|min:0',
+            'lebar' => 'required|numeric|min:0',
         ]);
 
-        // Mengambil data
-        $a = $request->input('a');
-        $b = $request->input('b');
-        $operation = $request->input('operation');
+        $panjang = $request->input('panjang');
+        $lebar = $request->input('lebar');
 
-        // Menghitung data
-        $result = $operation === 'add'
-            ? CalculatorHelper::add($a, $b)
-            : CalculatorHelper::subtract($a, $b);
+        $keliling = HitungHelper::kelilingPersegiPanjang($panjang, $lebar);
 
-        // Return view
-        return view('calculator', compact('a', 'b', 'operation', 'result'));
+        return view('keliling', compact('panjang', 'lebar', 'keliling'));
     }
 }
