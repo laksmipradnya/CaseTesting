@@ -15,8 +15,8 @@ class PersegiPanjangController extends Controller
     public function calculate(Request $request)
     {
         $request->validate([
-            'panjang' => 'required|numeric|min:0',
-            'lebar' => 'required|numeric|min:0',
+            'panjang' => 'required|numeric|min:1',
+            'lebar' => 'required|numeric|min:1',
         ]);
 
         $panjang = $request->input('panjang');
